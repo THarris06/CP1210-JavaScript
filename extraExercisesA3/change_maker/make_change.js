@@ -11,7 +11,16 @@ const processEntry = () => {
 };
 
 function makeChange (amountInCents) {
-    $("#quarters").value = (amountInCents / 25);
+    $("#quarters").value = Math.floor((amountInCents / 25));
+    amountInCents -= ($("#quarters").value * 25);
+
+    $("#dimes").value = Math.floor((amountInCents / 10));
+    amountInCents -= ($("#dimes").value * 10);
+
+    $("#nickels").value = Math.floor((amountInCents / 5));
+    amountInCents -= ($("#nickels").value * 5);
+    
+    $("#pennies").value = amountInCents;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
