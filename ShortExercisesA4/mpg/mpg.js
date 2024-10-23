@@ -17,13 +17,17 @@ const processEntries = () => {
     const gallons = parseFloat($("#gallons").value);
 
     if (isNaN(miles) || miles <= 0) {
-        alert("Miles driven must be a valid number greater than zero");
+        // displays alert.
+        $("#miles").nextElementSibling.textContent = "Must be a vaild number greater than zero."
         focusAndSelect("#miles");
-    } else if (isNaN(gallons) || gallons <= 0) {
-        alert("Gallons of gas used must be a valid number greater than zero.");
+    } if (isNaN(gallons) || gallons <= 0) {
+        // displays alert.
+        $("#gallons").nextElementSibling.textContent = "Must be a vaild number greater than zero."
         focusAndSelect("#gallons");
     } else {
         $("#mpg").value = calculateMPG(miles, gallons);
+        // call clearSpans function.
+        clearSpans();
     }
 };
 
@@ -31,10 +35,18 @@ const clearEntries = () => {
     $("#miles").value = "";
     $("#gallons").value = "";
     $("#mpg").value = "";
+};
+
+// created a function that clears the spans that can be called whenever needed.
+const clearSpans = () => {
+    $("#miles").nextElementSibling.textContent = "*"
+    $("#gallons").nextElementSibling.textContent = "*"
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     $("#calculate").addEventListener("click", processEntries);
     $("#clear").addEventListener("click", clearEntries);
     $("#miles").focus();
+    // added event listener to clear the spans when clear is clicked.
+    $("#clear").addEventListener("click", clearSpans);
 });

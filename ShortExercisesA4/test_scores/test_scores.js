@@ -32,10 +32,19 @@ const addScore = () => {
 	    $("#name").value = "";
 		$("#score").value = "";
 	}
+	$("#scores_display").value = "";
     $("#name").focus();
 };
+
+const displayScores = () => {
+	$("#scores_display").value = "";
+	for (let i = 0; i < names.length; i++) {
+		$("#scores_display").value += names[i] + " = " + scores[i] + "\n";
+	}
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 	$("#add").addEventListener("click", addScore);
 	$("#name").focus();
+	$("#display_scores").addEventListener("click", displayScores);
 });
