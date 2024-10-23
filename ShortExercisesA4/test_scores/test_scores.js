@@ -32,10 +32,12 @@ const addScore = () => {
 	    $("#name").value = "";
 		$("#score").value = "";
 	}
+	// added line to clear textarea.
 	$("#scores_display").value = "";
     $("#name").focus();
 };
 
+// created displayScores function.
 const displayScores = () => {
 	$("#scores_display").value = "";
 	for (let i = 0; i < names.length; i++) {
@@ -46,5 +48,6 @@ const displayScores = () => {
 document.addEventListener("DOMContentLoaded", () => {
 	$("#add").addEventListener("click", addScore);
 	$("#name").focus();
+	// added event listener.
 	$("#display_scores").addEventListener("click", displayScores);
 });
