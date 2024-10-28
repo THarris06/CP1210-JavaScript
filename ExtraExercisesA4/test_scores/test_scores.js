@@ -14,14 +14,14 @@ const addScore = () => {
     
     // check entries for validity
     if (name == "") {
-		$("#name").nextElementSibling.textContent = "This field is required.";
+		$("#name").nextElementSibling.textContent = "Please enter a name.";
 		isValid = false;
 	} else {
 		$("#name").nextElementSibling.textContent = "";
 	}
 	
 	if (isNaN(score) || score < 0 || score > 100) {
-		$("#score").nextElementSibling.textContent = "You must enter a valid score.";
+		$("#score").nextElementSibling.textContent = "Score must be between 0 and 100.";
 		isValid = false;
 	} else {
 		$("#score").nextElementSibling.textContent = "";
@@ -39,20 +39,61 @@ const addScore = () => {
 };
 
 const displayResults = () => {
-	document.body.appendChild(document.createElement("h2")).textContent = "Results";
+	// create header
+	if ($("h2") == null) {
+		document.body.appendChild(document.createElement("h2")).textContent = "Results";
+	};
+
+	// calculate average score
+	let averageScore = 0;
+	for (let i = 0; i < scores.length; i++) {
+		averageScore += parseInt(scores[i]);
+	};
+	averageScore = (averageScore / scores.length);
+
+	// display average score
+	if ($("average") == null) {
+		document.body.appendChild(document.createElement("average")).textContent = "Average score is " + averageScore;
+	}
+	else {
+		$("average").textContent = "Average score is " + averageScore;
+	};
+
+	// get highest score
+	let highScore = 0;
+	let highName = "";
+	for (let i = 0; i < scores.length; i++) {
+		if (highScore < parseInt(scores[i])) {
+			highScore = scores[i];
+			highName = names[i]
+		}
+	};
+
+	// display high score
+	if ($("highScore") == null) {
+		document.body.appendChild(document.createElement("highScore")).textContent = "High score = " + highName + " with a score of " + highScore;
+	}
+	else {
+		$("highScore").textContent = "High score = " + highName + " with a score of " + highScore;
+	};
 };
+	
 
 // created displayScores function (copied from ShortExercisesA4 6-2).
 // edited to fit new criteria.
 const displayScores = () => {
-	if ( == null) {
-		document.body.appendChild(document.createElement("h2")).textContent = "Scores";
-	}
-	else {
-		document.body.replaceChild(document.createElement("h2")).textContent = "Scores";
-	}
+	if ($("h3") == null) {
+		document.body.appendChild(document.createElement("h3")).textContent = "Scores";
+	};
+	
 	for (let i = 0; i < names.length; i++) {
-		// $("#scores").body.appendChild(names[i] + "\t" + scores[i] + "\n");
+		if (i == 0) {
+			document.body.appendChild(document.createElement("scores")).textContent = "";
+			$("scores").textContent = names[i] + " " + scores[i];
+		}
+		else {
+			$("scores").textContent += "\n" + names[i] + " " + scores[i];
+		}
 	}
 };
 
