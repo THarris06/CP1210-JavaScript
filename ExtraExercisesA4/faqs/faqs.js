@@ -5,9 +5,17 @@ const $ = selector => document.querySelector(selector);
 const toggle = evt => {
 	const h2Element = evt.currentTarget;               // get the clicked h2
 	const divElement = h2Element.nextElementSibling;   // get h2's sibling div
+	const h2Elements = Array.from(document.querySelectorAll("h2"))
 	
 	h2Element.classList.toggle("minus");
 	divElement.classList.toggle("open");
+
+	for (let element of h2Elements) {
+		if (element != h2Element) {
+			element.classList.remove("minus");
+			element.nextElementSibling.classList.remove("open");
+		}
+	}
 	
 	evt.preventDefault();           // cancel default action of h2's child <a>
 };
