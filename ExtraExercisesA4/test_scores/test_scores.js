@@ -51,14 +51,6 @@ const displayResults = () => {
 	};
 	averageScore = (averageScore / scores.length);
 
-	// display average score
-	if ($("average") == null) {
-		document.body.appendChild(document.createElement("average")).textContent = "Average score is " + averageScore;
-	}
-	else {
-		$("average").textContent = "Average score is " + averageScore;
-	};
-
 	// get highest score
 	let highScore = 0;
 	let highName = "";
@@ -69,7 +61,15 @@ const displayResults = () => {
 		}
 	};
 
-	// display high score
+	// display results
+	if ($("average") == null) {
+		document.body.appendChild(document.createElement("average")).textContent = "Average score is " + averageScore;
+		document.body.appendChild(document.createElement("br"));
+	}
+	else {
+		$("average").textContent = "Average score is " + averageScore;
+	};
+
 	if ($("highScore") == null) {
 		document.body.appendChild(document.createElement("highScore")).textContent = "High score = " + highName + " with a score of " + highScore;
 	}
@@ -78,7 +78,6 @@ const displayResults = () => {
 	};
 };
 	
-
 // created displayScores function (copied from ShortExercisesA4 6-2).
 // edited to fit new criteria.
 const displayScores = () => {
@@ -88,11 +87,11 @@ const displayScores = () => {
 	
 	for (let i = 0; i < names.length; i++) {
 		if (i == 0) {
-			document.body.appendChild(document.createElement("scores")).textContent = "";
+			document.body.appendChild(document.createElement("scores"));
 			$("scores").textContent = names[i] + " " + scores[i];
 		}
 		else {
-			$("scores").textContent += "\n" + names[i] + " " + scores[i];
+			$("scores").textContent += names[i] + " " + scores[i];
 		}
 	}
 };
