@@ -69,16 +69,16 @@ const startStopwatch = evt => {
 
 const stopStopwatch = evt => {
     // prevent default action of link
-    
+    evt.preventDefault();
     // stop timer
     clearInterval(stopwatchTimer);
 };
 
 const resetStopwatch = evt => {
     // prevent default action of link
-    
+    evt.preventDefault();
     // stop timer
-    stopStopwatch();
+    clearInterval(stopwatchTimer);
     // reset elapsed variables and clear stopwatch display
     stopwatchTimer = null;
     elapsedMinutes = 0;
