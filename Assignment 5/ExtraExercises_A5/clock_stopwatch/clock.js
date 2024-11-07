@@ -57,21 +57,26 @@ const tickStopwatch = () => {
 
 // event handler functions
 const startStopwatch = evt => {
-    // prevent default action of link
-    evt.preventDefault();
-    // do first tick of stop watch and then set interval timer to tick 
-    tickStopwatch();
-    stopwatchTimer = setInterval(tickStopwatch, 10)
-    // stop watch every 10 milliseconds. Store timer object in stopwatchTimer 
-    // variable so next two functions can stop timer.
-    
+    if (stopwatchTimer == null) {
+        // prevent default action of link
+        evt.preventDefault();
+        // do first tick of stop watch and then set interval timer to tick 
+        tickStopwatch();
+        stopwatchTimer = setInterval(tickStopwatch, 10)
+        // stop watch every 10 milliseconds. Store timer object in stopwatchTimer 
+        // variable so next two functions can stop timer.
+    }
 };
 
 const stopStopwatch = evt => {
-    // prevent default action of link
-    evt.preventDefault();
-    // stop timer
-    clearInterval(stopwatchTimer);
+    if (stopwatchTimer != null) {
+        // prevent default action of link
+        evt.preventDefault();
+        // stop timer
+        clearInterval(stopwatchTimer);
+        stopwatchTimer = null;
+    }
+    
 };
 
 const resetStopwatch = evt => {
@@ -98,8 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 	// set up stopwatch event handlers
     $("#start").addEventListener("click", startStopwatch);
-
     $("#stop").addEventListener("click", stopStopwatch);
-
     $("#reset").addEventListener("click", resetStopwatch);
 });
