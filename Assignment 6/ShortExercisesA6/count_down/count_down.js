@@ -26,19 +26,37 @@ document.addEventListener("DOMContentLoaded", () => {
             messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
             return;
         }     
-        // // make sure event date string has a 2-digit month
-        // const month = eventDate.substring(eventDate.length - 2); 
-        // if (isNaN(month)) {
-        //     messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
-        //     return;
-        // }     
-        // // make sure event date string has a 2-digit day
-        // const day = eventDate.substring(eventDate.length - 2); 
-        // if (isNaN(day)) {
-        //     messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
-        //     return;
-        // }    
-        // convert event date string to Date object and check for validity
+
+        const month = dateParts[0];
+        const day = dateParts[1];
+
+        if ( month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 ) {
+            if (day > 31) {
+                messageLbl.textContent = `month ${month} does not have ${day} days`;
+                return;
+            }
+        }
+        else if ( month == 4 || month == 6 || month == 9 || month == 11 ) {
+            if (day > 30) {
+                messageLbl.textContent = `month ${month} does not have ${day} days`;
+                return;
+            }
+        }
+        else if ( month == 2) {
+            if (year % 4 == 0) {
+                if (day > 29) {
+                    messageLbl.textContent = `month ${month} does not have ${day} days`;
+                return;
+                }
+            }
+            else {
+                if (day > 28) {
+                    messageLbl.textContent = `month ${month} does not have ${day} days`;
+                return;
+                }
+            }
+        }
+        
         let date = new Date(eventDate);
         if (date == "Invalid Date") {
             messageLbl.textContent = "Please enter the date in MM/DD/YYYY format." ;

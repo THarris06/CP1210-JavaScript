@@ -1,5 +1,6 @@
 "use strict";
 const $ = (selector) => document.querySelector(selector);
+
 const getRandomNumber = max => {
 	let random = null;
 	if (!isNaN(max)) {
@@ -12,8 +13,21 @@ const getRandomNumber = max => {
 document.addEventListener("DOMContentLoaded", () => {
     $("#generate").addEventListener("click", () => {
         $("#password").value = ""; // clear previous entry
-    
+        
         const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-+!@";
+
+        let password = "";
+        const userInput = $("#num").value; 
+        if (isNaN(userInput)) {
+            alert("stupid")
+        }
+        else {
+            for (let i = 1; i <= userInput; i++) {
+                password += chars[getRandomNumber(chars.length) - 1]
+            }
+        }
+
+        $("#password").value = password;
         
     }); // end click()
     
