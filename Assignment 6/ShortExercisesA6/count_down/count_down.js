@@ -26,6 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
             messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
             return;
         }     
+        // // make sure event date string has a 2-digit month
+        // const month = eventDate.substring(eventDate.length - 2); 
+        // if (isNaN(month)) {
+        //     messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
+        //     return;
+        // }     
+        // // make sure event date string has a 2-digit day
+        // const day = eventDate.substring(eventDate.length - 2); 
+        // if (isNaN(day)) {
+        //     messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
+        //     return;
+        // }    
         // convert event date string to Date object and check for validity
         let date = new Date(eventDate);
         if (date == "Invalid Date") {
