@@ -21,3 +21,10 @@ td {
     padding: 0.25em;
     border: 1px solid black;
 }
+tr {
+    width: 3em;
+    height: 3em;
+    vertical-align: top;
+    padding: 0.25em;
+    border: 1px solid black;
+}

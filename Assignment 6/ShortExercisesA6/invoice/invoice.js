@@ -27,6 +27,10 @@ const calculateDiscount = (customer, subtotal) => {
     }
 };
 
+const formatDate = (date) => {
+    return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+};
+
 document.addEventListener("DOMContentLoaded",  () => {
 
     $("#calculate").addEventListener("click", () => {
@@ -43,11 +47,21 @@ document.addEventListener("DOMContentLoaded",  () => {
         const discountPercent = calculateDiscount(customerType, subtotal);
         const discountAmount = subtotal * discountPercent;
         const invoiceTotal = subtotal - discountAmount;
-        
+        let invoiceDate = "";
+        if ($("#invoice_date").value == "") {
+            invoiceDate = new Date();
+        }
+        else {
+            invoiceDate = new Date($("#invoice_date").value);
+        }
+        const dueDate = new Date(formatDate(invoiceDate));
+        dueDate.setDate(dueDate.getDate() + 30);
+
         $("#subtotal").value = subtotal.toFixed(2);
         $("#percent").value = (discountPercent * 100).toFixed(2);
         $("#discount").value = discountAmount.toFixed(2);
         $("#total").value = invoiceTotal.toFixed(2);
+        $("#due_date").value = formatDate(dueDate);
 
         // set focus on type drop-down when done  
         $("#type").focus();
